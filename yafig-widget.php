@@ -29,20 +29,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 // Load Translations
-add_action( 'plugins_loaded', 'yafig_widget_load_textdomain' );
+add_action('plugins_loaded', 'yafig_widget_load_textdomain');
 function yafig_widget_load_textdomain() {
 	load_plugin_textdomain( 'yafig-widget' );
 }
 
-/**
- * Widget that displays a gallery of images featured on posts in a specified category.
-*/
-
 // Register widget.
 function yafig_widget_init() {
-	return register_widget( 'YAFIG_widget' );
+	return register_widget('YAFIG_widget');
 }
-add_action( 'widgets_init', 'yafig_widget_init' );
+add_action('widgets_init', 'yafig_widget_init');
 
 class YAFIG_Widget extends WP_Widget {
 	/* Constructor */
@@ -56,30 +52,23 @@ class YAFIG_Widget extends WP_Widget {
 	}
 
 	/* This is the Widget */
-	function widget( $args, $instance ) {
+	function widget($args, $instance) {
 		global $post;
-		extract( $args );
+		extract($args);
 
 		$gallery = get_gallery_markup ( $instance );
-		if ( '' === $gallery ) {
+		if ('' === $gallery) {
 			return;
 		} else {
-			if ( ! array_key_exists( 'title', $instance ) ) {
-				$instance['title'] = '';
-			}
+			if (!array_key_exists('title', $instance)) $instance['title'] = '';
 
 			// Widget options
-			$title = apply_filters( 'widget_title', $instance['title'] ); // Title
+			$title = apply_filters('widget_title', $instance['title']); // Title
 
 			// Output
 			echo $before_widget;
-
-			if ( $title ) {
-				echo $before_title . $title . $after_title;
-			}
-
+			if ($title) echo $before_title . $title . $after_title;
 			echo $gallery;
-
 			echo $after_widget;
 		}
 	}
@@ -97,80 +86,81 @@ class YAFIG_Widget extends WP_Widget {
 
 	/* Widget settings */
 	function form( $instance ) {
-	    if ( $instance ) {
+	  if ( $instance ) {
 			$title = $instance['title'];
 			$category = $instance['category'];
 			$size = $instance['size'];
 			$columns = $instance['columns'];
 			$rows = $instance['rows'];
-	    } else {
+	  } else {
 			$title = '';
 			$category = '';
 			$size = 'thumbnail';
 			$columns = 2;
 			$rows = 1;
-	    }
-
-?>
+	  }
+    ?>
 	    <p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php echo __( 'Title:', 'yafig-widget' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" class="widefat" />
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category slug:', 'yafig-widget' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'category' ); ?>" name="<?php echo $this->get_field_name( 'category' ); ?>" type="text" value="<?php echo $category; ?>" class="widefat" />
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id('size'); ?>"><?php echo __( 'Image size:', 'yafig-widget' ); ?></label>
-			<select name="<?php echo $this->get_field_name('size'); ?>" id="<?php echo $this->get_field_id('size'); ?>" class="widefat">
-				<option value="thumbnail" <?php if( 'thumbnail' === $size ) { echo 'selected="selected"'; } printf( '>%s', __( 'Thumbnail', 'featured-image-gallery-widget' ) ); ?></option>
-				<option value="medium" <?php if( 'medium' === $size ) { echo 'selected="selected"'; } printf( '>%s', __( 'Medium', 'featured-image-gallery-widget' ) ); ?></option>
-				<option value="large" <?php if( 'large' === $size ) { echo 'selected="selected"'; } printf( '>%s', __( 'Large', 'featured-image-gallery-widget' ) ); ?></option>
-				<option value="full" <?php if( 'full' === $size ) { echo 'selected="selected"'; } printf( '>%s', __( 'Full', 'featured-image-gallery-widget' ) ); ?></option>
-			</select>
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'columns' ); ?>"><?php echo __( 'Number of columns:', 'yafig-widget' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'columns' ); ?>" name="<?php echo $this->get_field_name( 'columns' ); ?>" type="number" min="1" max="9" value="<?php echo $columns; ?>" class="widefat" />
-		</p>
-                <p>
-			<label for="<?php echo $this->get_field_id( 'rows' ); ?>"><?php echo __( 'Number of rows:', 'yafig-widget' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'rows' ); ?>" name="<?php echo $this->get_field_name( 'rows' ); ?>" type="number" min="1" max="9" value="<?php echo $rows; ?>" class="widefat" />
-		</p>
-	<?php
+			  <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php echo __( 'Title:', 'yafig-widget' ); ?></label>
+			  <input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" class="widefat" />
+		  </p>
+		  <p>
+			  <label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category slug:', 'yafig-widget' ); ?></label>
+			  <input id="<?php echo $this->get_field_id( 'category' ); ?>" name="<?php echo $this->get_field_name( 'category' ); ?>" type="text" value="<?php echo $category; ?>" class="widefat" />
+		  </p>
+		  <p>
+			  <label for="<?php echo $this->get_field_id('size'); ?>"><?php echo __( 'Image size:', 'yafig-widget' ); ?></label>
+		    <select name="<?php echo $this->get_field_name('size'); ?>" id="<?php echo $this->get_field_id('size'); ?>" class="widefat">
+				  <option value="thumbnail" <?php if( 'thumbnail' === $size ) { echo 'selected="selected"'; } printf( '>%s', __( 'Thumbnail', 'featured-image-gallery-widget' ) ); ?></option>
+				  <option value="medium" <?php if( 'medium' === $size ) { echo 'selected="selected"'; } printf( '>%s', __( 'Medium', 'featured-image-gallery-widget' ) ); ?></option>
+				  <option value="large" <?php if( 'large' === $size ) { echo 'selected="selected"'; } printf( '>%s', __( 'Large', 'featured-image-gallery-widget' ) ); ?></option>
+				  <option value="full" <?php if( 'full' === $size ) { echo 'selected="selected"'; } printf( '>%s', __( 'Full', 'featured-image-gallery-widget' ) ); ?></option>
+			  </select>
+		  </p>
+		  <p>
+			  <label for="<?php echo $this->get_field_id( 'columns' ); ?>"><?php echo __( 'Number of columns:', 'yafig-widget' ); ?></label>
+			  <input id="<?php echo $this->get_field_id( 'columns' ); ?>" name="<?php echo $this->get_field_name( 'columns' ); ?>" type="number" min="1" max="9" value="<?php echo $columns; ?>" class="widefat" />
+		  </p>
+      <p>
+			  <label for="<?php echo $this->get_field_id( 'rows' ); ?>"><?php echo __( 'Number of rows:', 'yafig-widget' ); ?></label>
+			  <input id="<?php echo $this->get_field_id( 'rows' ); ?>" name="<?php echo $this->get_field_name( 'rows' ); ?>" type="number" min="1" max="9" value="<?php echo $rows; ?>" class="widefat" />
+		  </p>
+	  <?php
 	}
 }
 
 // Returns the gallery markup.
 function get_gallery_markup ( $args ) {
-	$query_args = array( 'posts_per_page'   => -1, 'category_name' => $args['category'] );
+	$query_args = array('posts_per_page' => -1, 'category_name' => $args['category']);
 	$query = new WP_query($query_args);
 
-	global $titles;
-        $titles	= array();
-	if ( $query->have_posts() ) {
+	global $yafig_titles;
+  $yafig_titles	= array();
+	if ($query->have_posts()) {
 		$ids = array();
-		while ( $query->have_posts() && (count($ids) < ($args['columns'] * $args['rows']))) {
+		while ($query->have_posts() && (count($ids) < ($args['columns'] * $args['rows']))) {
 			$post = $query->the_post();
 			$image_id = get_post_thumbnail_id();
-			$titles[$image_id] = get_the_title();
-			if ( $image_id ) { $ids[] = $image_id; }
+			if ($image_id) { 
+        $ids[] = $image_id;
+        $yafig_titles[$image_id] = get_the_title();
+      }
 		}
 		rewind_posts(); // Reset the main query, in case it's used after this function.
 
-		if ( empty( $ids ) ) {
+		if (empty($ids)) {
 			return '';
 		} else {
-			add_filter( 'attachment_link', 'rewrite_gallery_item_attachment_link', 10, 2 ); // Make images link to posts instead of attachments.
-			add_filter( 'wp_get_attachment_image_attributes', 'add_title_to_gallery_item', 10, 3);
-			$args = array_merge( array(
+			add_filter('attachment_link', 'rewrite_gallery_item_attachment_link', 10, 2); // Make images link to posts instead of attachments.
+			add_filter('wp_get_attachment_image_attributes', 'add_title_to_gallery_item', 10, 3);
+			$args = array_merge(array(
 				'ids' => $ids,
 				'columns' => 2,
 				'rows' => 1,
 				'size' => 'thumbnail',
 				'link_type' => 'post', // Filtered to link to the parent post where the parent exists.			
-			), $args );
-			$markup = gallery_shortcode( $args );
+			), $args);
+			$markup = gallery_shortcode($args);
 
 			return $markup;
 		}
@@ -182,8 +172,8 @@ function get_gallery_markup ( $args ) {
 // Filter the HTML attributes of each img tag in the gallery, adding a
 // title attribute which points to the title of the linked post.
 function add_title_to_gallery_item($attr, $attachment, $size) {
-	global $titles;
-	$attr['title'] = $titles[$attachment->ID];
+	global $yafig_titles;
+	$attr['title'] = $yafig_titles[$attachment->ID];
 	return($attr);
 }
 
