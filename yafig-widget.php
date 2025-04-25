@@ -121,7 +121,7 @@ class YAFIG_Widget extends WP_Widget {
 			<input id="<?php echo $this->get_field_id( 'category' ); ?>" name="<?php echo $this->get_field_name( 'category' ); ?>" type="text" value="<?php echo $category; ?>" class="widefat" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('size'); ?>"><?php echo __( 'Image Size:', 'yafig-widget' ); ?></label>
+			<label for="<?php echo $this->get_field_id('size'); ?>"><?php echo __( 'Image size:', 'yafig-widget' ); ?></label>
 			<select name="<?php echo $this->get_field_name('size'); ?>" id="<?php echo $this->get_field_id('size'); ?>" class="widefat">
 				<option value="thumbnail" <?php if( 'thumbnail' === $size ) { echo 'selected="selected"'; } printf( '>%s', __( 'Thumbnail', 'featured-image-gallery-widget' ) ); ?></option>
 				<option value="medium" <?php if( 'medium' === $size ) { echo 'selected="selected"'; } printf( '>%s', __( 'Medium', 'featured-image-gallery-widget' ) ); ?></option>
@@ -130,11 +130,11 @@ class YAFIG_Widget extends WP_Widget {
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'columns' ); ?>"><?php echo __( 'Number of Columns:', 'yafig-widget' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'columns' ); ?>"><?php echo __( 'Number of columns:', 'yafig-widget' ); ?></label>
 			<input id="<?php echo $this->get_field_id( 'columns' ); ?>" name="<?php echo $this->get_field_name( 'columns' ); ?>" type="number" min="1" max="9" value="<?php echo $columns; ?>" class="widefat" />
 		</p>
                 <p>
-			<label for="<?php echo $this->get_field_id( 'rows' ); ?>"><?php echo __( 'Number of Rows:', 'yafig-widget' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'rows' ); ?>"><?php echo __( 'Number of rows:', 'yafig-widget' ); ?></label>
 			<input id="<?php echo $this->get_field_id( 'rows' ); ?>" name="<?php echo $this->get_field_name( 'rows' ); ?>" type="number" min="1" max="9" value="<?php echo $rows; ?>" class="widefat" />
 		</p>
 	<?php
