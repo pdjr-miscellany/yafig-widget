@@ -1,2 +1,3 @@
 # yafig-widget
-Yet another featured image gallery widget
+Yet another featured image gallery widget.
+
