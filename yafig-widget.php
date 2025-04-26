@@ -106,7 +106,7 @@ class YAFIG_Widget extends WP_Widget {
 			  <input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" class="widefat" />
 		  </p>
 		  <p>
-			  <label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category slug:', 'yafig-widget' ); ?></label>
+			  <label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category slug(s):', 'yafig-widget' ); ?></label>
 			  <input id="<?php echo $this->get_field_id( 'category' ); ?>" name="<?php echo $this->get_field_name( 'category' ); ?>" type="text" value="<?php echo $category; ?>" class="widefat" />
 		  </p>
 		  <p>
