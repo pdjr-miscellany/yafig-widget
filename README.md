@@ -1,7 +1,8 @@
 # yafig-widget
+
 Yet another featured image gallery widget.
 
-Based on 'Featured Image Gallery Widget' by ????.
+Based on 'Featured Image Gallery Widget' by Nick Halsey.
 
 ## Description
 
@@ -13,7 +14,7 @@ images of posts in one or more specified post categories.
 To hide captions, paste this CSS into the "Additional CSS" editor in
 the WordPress customizer:
 ```
-.yafig-widget .gallery-caption {
+.gallery .gallery-caption {
 	display: none;
 }
 ```

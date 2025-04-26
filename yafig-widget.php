@@ -10,6 +10,7 @@
  * Text Domain: yafig-widget
 
 =====================================================================================
+Copyright (C) 2025 Paul Reeve
 Copyright (C) 2018 Nick Halsey
 
 This program is free software; you can redistribute it and/or
