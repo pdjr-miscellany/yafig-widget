@@ -130,7 +130,7 @@ class YAFIG_Widget extends WP_Widget {
 }
 
 // Returns the gallery markup.
-function get_gallery_markup ( $args ) {
+function get_gallery_markup($args) {
 	$query_args = array('posts_per_page' => -1, 'category_name' => $args['category']);
 	$query = new WP_query($query_args);
 
